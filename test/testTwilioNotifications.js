@@ -1,10 +1,10 @@
-var expect = require('chai').expect;
-var supertest = require('supertest');
-var mockery = require('mockery');
-var stub = require('sinon').stub;
+import { expect } from 'chai';
+import supertest from 'supertest';
+import { enable, registerMock, deregisterAll, disable } from 'mockery';
+import { stub } from 'sinon';
 
-var app = require('../webapp');
-var config = require('../config');
+import app from '../webapp';
+import config from '../config';
 
 describe('Twilio notifications on error', function() {
   var agent = supertest(app);
@@ -12,10 +12,10 @@ describe('Twilio notifications on error', function() {
 
   before(() => {
     // mockery.deregisterAll();
-    mockery.enable({
+    enable({
       useCleanCache: true,
       warnOnReplace: false,
-      warnOnUnregistered: false
+      warnOnUnregistered: false,
     });
 
     msgCreateStub = stub().returns(Promise.resolve({}));
@@ -27,15 +27,15 @@ describe('Twilio notifications on error', function() {
             create: msgCreateStub,
           },
         },
-      }
+      };
     }
 
-    mockery.registerMock('twilio', TwilioMock);
+    registerMock('twilio', TwilioMock);
   });
 
   after(function () {
-    mockery.deregisterAll();
-    mockery.disable();
+    deregisterAll();
+    disable();
   });
 
   describe('GET /error', function() {
@@ -46,6 +46,6 @@ describe('Twilio notifications on error', function() {
           expect(res.status).to.equal(500);
           expect(msgCreateStub.calledTwice).to.be.true;
         });
-      });
+    });
   });
 });
