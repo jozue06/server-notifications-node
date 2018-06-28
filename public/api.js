@@ -16,7 +16,8 @@ router.get('/api/ivertinimas', (req, res) => {
   console.log('huh???');
   // res.sendFile('index.html', {root: './public'});
   // myApp.SearchObj.submit();
-  notifyOn(req.body);
+ 
+  res.send(notifyOn(req.body))
   res.end();
 }
   

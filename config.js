@@ -1,11 +1,9 @@
 import { config } from 'dotenv';
 var cfg = {};
 
-if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
-  config({path: '.env'});
-} else {
-  config({path: '.env.example', silent: true});
-}
+// if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
+  config('.env');
+
 
 cfg.port = process.env.PORT || 3030;
 
