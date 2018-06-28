@@ -7,7 +7,7 @@ if (process.env.NODE_ENV !== 'production' && process.env.NODE_ENV !== 'test') {
   config({path: '.env.example', silent: true});
 }
 
-cfg.port = process.env.PORT || 3000;
+cfg.port = process.env.PORT || 3030;
 
 cfg.secret = process.env.APP_SECRET || 'keyboard cat';
 

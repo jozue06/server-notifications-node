@@ -3,10 +3,11 @@ import { sendSms } from '../twilioClient';
 import { forEach } from '../config/administrators.json';
 
 function formatMessage(messageToReport) {
-  return '[This is a test] ALERT! It appears the server is' +
-    'having issues. Exception: ' + messageToReport +
-    '. Go to: http://newrelic.com ' +
-    'for more details.';
+  console.log('sent maybe?  ', messageToReport);
+  return '[This is a test] ALERT! It appears the server is'  
+  + messageToReport +
+    '. Go to: ' +
+    'for more details.';  
 }
 
 export function notifyOn(appSend, request, response, next) {

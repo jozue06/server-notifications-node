@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Įvertinimas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script id="article-template" type="text/x-handlebars-template">
+      <article class="clearfix" data-author="{{author}}" data-category="{{category}}">
+        <header>
+          <h1>{{title}}</h1>
+          <div class="byline">
+            By <address><a href="{{authorUrl}}">{{author}}</a></address>
+            {{publishStatus}}
+          </div>
+        </header>
+        <section class="article-body">{{{body}}}</section>
+        <a href="#" class="read-on">Read on &rarr;</a>
+      </article>
+    </script>
+  </head>
+  <body>
+    <header class="site-header clearfix">
+      <section class="heading-group-h1">
+        <h1>
+          Įvertinimas
+        </h1>
+        <!-- <h2>This is Grape</h2> -->
+      </section>
+      <nav class="main-nav">
+        <div class="icon-menu"></div>
+        <ul>
+          <li class="tab" data-content="articles"><a href="./index.html" class="icon-home"> Home</a></li>
+          <li class="tab" data-content="about"><a href="#" class="icon-address-book"> About</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="about" class="tab-content">
+        <header>
+          Welcome to Įvertinimas.
+        </header>
+        <section>
+          <h1>What is Grape:</h1>
+          <ul>
+            <li><p>stuff</p></li>
+            <li><p>more stuff</p></li>
+            <li>Find me on github:</li>
+            <li><a href="http://github.com/jozue06" target="_blank" class="icon-github"> Josh's GitHub</a></li>
+          </ul>
+        </section>
+      </section>
+
+      <section id="write" class="tab-content">
+        <h1>New Post</h1>
+        <form id="new-form">
+          <label>
+            <input type="text" id="article-title" placeholder="Post title" required>
+          </label>
+          <textarea id="article-body" rows="8" cols="40" required></textarea>
+          <label>
+            <input type="text" id="article-author" placeholder="Your Name" required>
+          </label>
+            <label>
+            <input type="text" id="article-category" placeholder="Category?">
+          </label>
+          <button type="submit" onclick="app.SearchObj.submit()">Create</button>
+        </form>
+      </section>
+    
+        <div id="footer container">
+          <footer class="footer"><a class="about-us"></a>|jm6|</a></footer>
+        </div>
+  
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <script src='https://cdn.rawgit.com/visionmedia/page.js/master/page.js'></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+      <!-- <script src="/public/js/articleView.js"></script> -->
+      <script src="./model.js"></script>
+      <!-- <script src=""></script> -->
+
+      
+
+
+  </body>
+</html>
