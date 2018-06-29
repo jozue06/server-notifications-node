@@ -37,7 +37,7 @@ app.use(session({
 app.use(flash());
 
 // Configure application routes
-import routes from './controllers/router';
+import routes from './public/controllers/router.js';
 var router = Router();
 
 // Add CSRF protection for web routes
@@ -69,5 +69,4 @@ app.use(function(err, request, response, next) {
   response.sendFile(join(__dirname, 'public', '500.html'));
 });
 
-// Export Express app
-module.exports = app;
+

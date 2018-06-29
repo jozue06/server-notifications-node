@@ -1,6 +1,8 @@
 // Map routes to controller functions
-export default function(router) {
-  router.get('/error', function(req, resp) {
+(router) => {
+  router.get('/error', function(req, res) {
+
+    let SendObj = {};
 
     SendObj.create = function(key) {
 
