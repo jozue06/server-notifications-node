@@ -41,12 +41,11 @@
 
     <section class="form next-form container">
       <fieldset>
-          <form id="landing-form">
-            <input  id="budget" type="number" placeholder="Budget" required >
+          <form id="text-send">
+            <input  id="budget" type="text" placeholder="Budget" required >
             <input id="location" type="text" placeholder="Location" required >
-            <input id="startDate" type="date" required >
-            <input id="endDate" type="date" required >
-            <button class="show-results" type="submit">Submit</button>
+            <input id="tag" type="text" required >
+            <button type="submit">Submit</button>
             <button class="clear-form">Clear Form</button>
 
           </form>
@@ -59,17 +58,7 @@
          
         <div id="result-view"></div>
 
-        <button class="right">&#10095;</button>
-        <button class="return" type="submit">Re-start search</button>
-      </section>
-
-      <section class="error container">
-        <p>No results, please try again.</p>
-      </section>
-
-      <section class="about container">
-        <div>what is this</div>
-      </section>
+       
       
 
       <div id="footer container">
@@ -82,6 +71,7 @@
     <!-- <script src="./scripts/controller/routes.js"></script>
     <script src="./scripts/views/view.js"></script>
     <script src="./scripts/models/model.js"></script> -->
+    <script src="./sendt.js"></script>
 </body>
 
 </html>

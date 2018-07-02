@@ -53,20 +53,21 @@ app.use(router);
 
 // Handle 404
 app.use((request, response, next) => {
-  response.status(404);
-  response.sendFile(path.join(__dirname, 'public', '404.html'));
+  // response.status(404);
+  // response.sendFile(path.join(__dirname, 'public', '404.html'));
+  response.send(request.body);
 });
 
 // Mount middleware to notify Twilio of errors
 app.use(twilioNotifications.notifyOnError);
 
 // Handle Errors
-app.use((err, request, response, next) => {
-  // console.error('An application error has occurred:');
-  // console.error(err.stack);
-  response.status(200);
-  response.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+// app.use((request, response, next) => {
+//   console.error('An application error has occurred:', request.body);
+//   // console.error(err.stack);
+//   // response.status(200);
+//   response.send(request.body);
+// });
 
 // Export Express app
 module.exports = app;
