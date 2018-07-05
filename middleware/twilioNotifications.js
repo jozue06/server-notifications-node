@@ -1,16 +1,15 @@
-var twilioClient = require('../twilioClient');
-var fs = require('fs');
-var admins = require('../config/administrators.json');
+// let twilioClient = require('../twilioClient');
+// // let fs = require('fs');
+// let admins = require('../config/administrators.json');
 
-function formatMessage(errorToReport) {
-  return ' ALERT! It someone is watching you.'
-  + errorToReport;
-}
+// function formatMessage(message) {
+//   return '  message;
+// }
 
-exports.notifyOnError = function(appError, request, response, next) {
-  admins.forEach(function(admin) {
-    var messageToSend = formatMessage(appError.message);
-    twilioClient.sendSms(admin.phoneNumber, messageToSend);
-  });
-  next(appError);
-};
+// exports.notifyOnError = function(appError, request, response, next) {
+//   admins.forEach(function(admin) {
+//     let messageToSend = formatMessage(appError.message);
+//     twilioClient.sendSms(admin.phoneNumber, messageToSend);
+//   });
+//   next(appError);
+// };

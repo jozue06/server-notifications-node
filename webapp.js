@@ -1,16 +1,23 @@
-var path = require('path');
-var express = require('express');
-var bodyParser = require('body-parser');
-var session = require('express-session');
-var flash = require('connect-flash');
-var morgan = require('morgan');
-var csurf = require('csurf');
+'use strict';
 
-var config = require('./config');
-var twilioNotifications = require('./middleware/twilioNotifications');
+let path = require('path');
+let express = require('express');
+let bodyParser = require('body-parser');
+let session = require('express-session');
+let flash = require('connect-flash');
+let morgan = require('morgan');
+// let csurf = require('csurf');
+
+let config = require('./config');
+
+
+let routes = require('./controllers/index');
+let notifications = require('./controllers/notifications');
+
+
 
 // Create Express web app
-var app = express();
+let app = express();
 
 // Use morgan for HTTP request logging in dev and prod
 if (process.env.NODE_ENV !== 'test') {
@@ -19,55 +26,48 @@ if (process.env.NODE_ENV !== 'test') {
 
 // Serve static assets
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', path.join(__dirname, './public/views'));
+app.set('view engine', 'pug');
+
 
 // Parse incoming form-encoded HTTP bodies
 app.use(bodyParser.urlencoded({
-  extended: true
+  extended: true,
 }));
 
 // Create and manage HTTP sessions for all requests
 app.use(session({
   secret: config.secret,
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
 }));
 
 // Use connect-flash to persist informational messages across redirects
 app.use(flash());
 
-// Configure application routes
-var routes = require('./controllers/router');
-var router = express.Router();
 
 // Add CSRF protection for web routes
-if (process.env.NODE_ENV !== 'test') {
-  app.use(csurf());
-  app.use(function(request, response, next) {
-    response.locals.csrftoken = request.csrfToken();
-    next();
-  });
-}
 
-routes(router);
-app.use(router);
-
-// Handle 404
-app.use((request, response, next) => {
-  // response.status(404);
-  // response.sendFile(path.join(__dirname, 'public', '404.html'));
-  response.send(request.body);
-});
-
-// Mount middleware to notify Twilio of errors
-app.use(twilioNotifications.notifyOnError);
-
-// Handle Errors
-// app.use((request, response, next) => {
-//   console.error('An application error has occurred:', request.body);
-//   // console.error(err.stack);
-//   // response.status(200);
-//   response.send(request.body);
+// app.use(csurf());
+// app.use(function(request, response, next) {
+//   response.locals.csrftoken = request.csrfToken();
+//   next();
 // });
 
-// Export Express app
+
+app.use('/', routes);
+app.use('/notifications', notifications);
+// app.use('/message', message);
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {},
+  });
+});
+
+
 module.exports = app;

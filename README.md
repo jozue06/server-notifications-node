@@ -33,13 +33,13 @@ if you don't have one already.
    and local configuration. Save the file as `.env`.  You'll need to set
    `TWILIO_AUTH_TOKEN`, `TWILIO_ACCOUNT_SID`, and `TWILIO_NUMBER`.
 
-   For the `TWILIO_NUMBER` variable you'll need to provision a new number
+   For the `TWILIO_NUMBER` letiable you'll need to provision a new number
    in the
    [Manage Numbers page](https://www.twilio.com/user/account/phone-numbers/incoming)
    under your account. The phone number should be in
    [E.164 format](https://support.twilio.com/hc/en-us/articles/223183008-Formatting-International-Phone-Numbers)
 
-    Run `source .env` to export the environment variables.
+    Run `source .env` to export the environment letiables.
 
 1. Navigate to the project directory in your terminal and run:
 
