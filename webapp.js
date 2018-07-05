@@ -5,8 +5,9 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let session = require('express-session');
 let flash = require('connect-flash');
-let morgan = require('morgan');
+// let morgan = require('morgan');
 // let csurf = require('csurf');
+let authRouter = require( './auth/router');
 
 let config = require('./config');
 
@@ -21,7 +22,7 @@ let app = express();
 
 // Use morgan for HTTP request logging in dev and prod
 if (process.env.NODE_ENV !== 'test') {
-  app.use(morgan('combined'));
+  // app.use(morgan('combined'));
 }
 
 // Serve static assets
@@ -57,10 +58,10 @@ app.use(flash());
 
 app.use('/', routes);
 app.use('/notifications', notifications);
-// app.use('/message', message);
+app.use(authRouter );
+
 
 // production error handler
-// no stacktraces leaked to user
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
